@@ -14,6 +14,7 @@ class AdminNewsController extends NewsController
 
     public function actionNew()
     {
+
         $view = new View();
         $view->display($this->view_new);
     }

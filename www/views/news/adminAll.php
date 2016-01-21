@@ -50,7 +50,7 @@ _table;
                     </tbody>
                 </table>
                 <div class="add_btns">
-                    <input class="btn_add" type="submit" name="art_edit" value="Изменить">
+<!--                    <input class="btn_add" type="submit" name="art_edit" value="Изменить">-->
                     <input class="btn_del" type="submit" name="art_del" value="Удалить">
                 </div>
             </section>

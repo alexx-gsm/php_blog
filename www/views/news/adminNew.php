@@ -24,15 +24,23 @@ $url_all_news = $host . "/index.php?ctrl=AdminNews&act=All";
                 <input class="btn_add" type="submit" name="art_list" value="К списку">
                 <input class="btn_add" type="submit" name="art_new" value="Новая">
             </div>
+        </form>
+        <form method="post" action="<?= $url_add_news ?>">
             <div class="art_title">
-                <span>Заголовок:</span>
+                <p>Заголовок:</p>
                 <input type="text" name="title" size="100" value="title">
             </div>
+            <div class="art_intro">
+                <p class="art_intro">Вводная часть</p>
+                <textarea id="intro" cols="100" rows="10"></textarea>
+            </div>
+            <div class="art_text">
+                <p class="art_text">Основная часть</p>
+                <textarea id="editor" name="editor" cols="100" rows="20"></textarea>
+                <script>CKEDITOR.replace( 'editor' );</script>
+            </div>
             <input type="hidden" name="id" value="id">
-            <textarea id="editor" name="editor" cols="100" rows="20"></textarea>
-            <script>
-                CKEDITOR.replace( 'editor' );
-            </script>
+            <input type="hidden" name="id_news" value="">
             <input class="btn_add button" type="submit" name="art_save" value="Сохранить">
         </form>
     </div>
