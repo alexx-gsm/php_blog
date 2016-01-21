@@ -1,13 +1,14 @@
-function art_select(radio) {
+function art_select() {
     //var link_temp = alert(document.getElementById('btn_edit').href);
-    alert(radio.value);
+    var radio = document.getElementsByName('radio_id');
 
-    var radio = document.getElementsByName('art_id');
-    return false;
+    console.log(radio);
+
     for( var i = 0; i < radio.length; i++) {
         if( radio[i].type == "radio" && radio[i].checked ) {
-            //document.getElementById('btn_edit').href += "?id="+radio[i].value;
-            //document.getElementById('art_form').submit();
+            var form = document.getElementById('art_form');
+            form.action = '/index.php?ctrl=AdminNews&act=Del';
+            form.submit();
             return true;
         }
     }
@@ -26,6 +27,6 @@ function art_edit(id) {
         parent.appendChild(id_n);
     } else return false;
 
-    document.getElementById('art_form').submit();
+    parent.submit();
     return true;
 }

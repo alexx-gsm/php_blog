@@ -34,4 +34,13 @@ class News extends AbstractModel
         $db->query($sql);
         return $db->getId();
     }
+
+    public static function del()
+    {
+        $db = new DB;
+
+        $sql = 'DELETE FROM ' . static::$table . ' WHERE id=' . static::$id;
+        // var_dump($sql); die;
+        $db->query($sql);
+    }
 }

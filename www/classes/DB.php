@@ -3,11 +3,16 @@
 
 class DB
 {
+    protected $db_name = 'blog_php';
+    protected $db_host = 'localhost';
+    protected $db_user = 'php';
+    protected $bd_pass = '123';
+
     private $dbh;
 
     public function __construct()
     {
-        $this->dbh = new PDO("mysql:dbname=blog_php; host=localhost", 'php', '123');
+        $this->dbh = new PDO("mysql:dbname=$this->db_name; host=$this->db_host", $this->db_user, $this->bd_pass);
         $this->dbh->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
     }
 

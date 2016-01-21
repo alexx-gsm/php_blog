@@ -29,12 +29,24 @@ class AdminNewsController extends NewsController
             }
         }
 
-        if( $id )
-        {
+        if( $id ) {
             $view->id = $id;
             $view->item = News::getOne($id);
         }
 
         $view->display($this->view_new);
+    }
+
+    public function actionDel()
+    {
+        News::$id = isset( $_POST['radio_id'] ) ? $_POST['radio_id'] : null;
+
+        if( News::$id ) {
+            News::del();
+        }
+
+        $view = new View();
+        $view->items = News::getAll();
+        $view->display($this->view_all);
     }
 }

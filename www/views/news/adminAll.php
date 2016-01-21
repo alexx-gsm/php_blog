@@ -4,6 +4,7 @@ include_once __DIR__ . '/../../inc/var.php';
 
 $host = "http://".$_SERVER['HTTP_HOST'];
 $url_add_news = $host . "/index.php?ctrl=AdminNews&act=New";
+$url_del_news = $host . "/index.php?ctrl=AdminNews&act=Del";
 
 $table = '';
 foreach( $items as $item ) {
@@ -11,7 +12,7 @@ foreach( $items as $item ) {
     $title = $item->title;
     $table .=<<<_table
     <tr>
-        <td><input type="radio" name="id_news" value="$id"></td>
+        <td><input type="radio" name="radio_id" value="$id"></td>
         <td>$id</td>
         <td class="title" onclick="return art_edit($id)">$title</td>
     </tr>
@@ -49,14 +50,12 @@ _table;
                     <?= $table ?>
                     </tbody>
                 </table>
-                <div class="add_btns">
-<!--                    <input type="hidden" name="id_news" value="">-->
-<!--                    <input class="btn_add" type="submit" name="art_edit" value="Изменить">-->
-                    <input class="btn_del" type="submit" name="art_del" value="Удалить">
-                </div>
             </section>
             <div class="clear"></div>
         </form>
+        <div class="add_btns">
+            <button type="button" class="btn_del" onclick="return art_select()">Удалить</button>
+        </div>
         <footer id="main_footer">
             <small>
                 Copyright &copy; AleXX-GSM 2014
