@@ -8,8 +8,11 @@ class NewsController
 
     public function actionAll()
     {
+        $paginator = new Pagination();
         $view = new View();
-        $view->items = News::getAll();
+
+        $view->items = $paginator->getPage();
+        // $view->items = News::getAll();
         $view->display($this->view_all);
     }
 

@@ -9,17 +9,31 @@ class Pagination
     private $_query;
     private $_total;
 
-    public function __construct( $conn, $query )
-    {
-        $this->_conn = $conn;
-        $this->_query = $query;
+    private $pages;
 
-        $res = $this->_conn->query( $this->_query );
-        $this->_total = $res->num_rows;
+    public function getPage()
+    {
+        // $this->pages = $pages;
+        $page = isset( $_POST['page'] ) ? $_POST['page'] : 1;
+        $pages = isset( $_POST['pages'] ) ? $_POST['pages'] : 5;
+        $page_nav = new Paginator($page, $pages);
+        $items = $page_nav->getPage();
+        return $items;
+
+        //$items = Paginator::getAll();
+        //var_dump($items); die;
+
+//        $this->_conn = $conn;
+//        $this->_query = $query;
+
+//        $res = $this->_conn->query( $this->_query );
+//        $this->_total = $res->num_rows;
     }
 
     public function getData( $limit = 10, $page = 1 )
     {
+
+
         $this->_limit = $limit;
         $this->_page = $page;
 

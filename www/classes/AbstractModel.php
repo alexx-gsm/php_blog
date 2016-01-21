@@ -3,8 +3,8 @@
 
 abstract class AbstractModel implements IModel
 {
-    protected static $table;
-    protected static $class;
+    protected static $table = 'articles';
+    protected static $class = 'News';
 
     public static function getAll()
     {

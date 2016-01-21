@@ -37,13 +37,18 @@ class DB
 
     public function query( $sql )
     {
-
         return $this->dbh->query($sql);
     }
 
     public function getID()
     {
         return $this->dbh->lastInsertId();
+    }
+
+    public function getCountRows( $sql )
+    {
+        $sel = $this->queryAll($sql);
+        return count($sel);
     }
 
 }

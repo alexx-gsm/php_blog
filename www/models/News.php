@@ -8,21 +8,15 @@ class News extends AbstractModel
     public static $intro = '';
     public static $text = '';
 
-    protected static $table = 'articles';
-    protected static $class = 'News';
-
     public static function update()
     {
         $db = new DB;
 
-        $val = "";
         $sql = "UPDATE " . static::$table . " SET title='" . static::$title
             . "', intro='" . static::$intro . "', text='" . static::$text
             . "' WHERE id=" . static::$id;
-        // var_dump($sql); die;
         $db->query($sql);
         return $db->getId();
-
     }
 
     public static function save()
@@ -40,7 +34,6 @@ class News extends AbstractModel
         $db = new DB;
 
         $sql = 'DELETE FROM ' . static::$table . ' WHERE id=' . static::$id;
-        // var_dump($sql); die;
         $db->query($sql);
     }
 }
