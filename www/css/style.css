@@ -1,0 +1,14 @@
+h1 {
+    font-size: 100px;
+    text-align: center;
+}
+.wrapper {
+    width: 502px;
+    margin: 20px auto;
+
+}
+#field {
+    width: 500px;
+    height: 300px;
+    border: solid 1px black;
+}
