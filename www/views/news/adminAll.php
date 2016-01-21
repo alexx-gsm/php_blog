@@ -11,7 +11,7 @@ foreach( $items as $item ) {
     $title = $item->title;
     $table .=<<<_table
     <tr>
-        <td><input type="radio" name="art_id" value="$id"></td>
+        <td><input type="radio" name="id_news" value="$id"></td>
         <td>$id</td>
         <td class="title" onclick="return art_edit($id)">$title</td>
     </tr>
@@ -33,9 +33,9 @@ _table;
     <div id="wrapper">
         <!-- НОВАЯ СТАТЬЯ -->
         <div class="add_btns">
-            <a class="btn_add" href="<?php echo $url_add_news ?>">Добавить</a>
+            <a class="btn_add" href="<?= $url_add_news ?>">Добавить</a>
         </div>
-        <form id="art_form" method="post" action="add_article.php" onsubmit="return art_select(this)">           <!-- СПИСОК СТАТЕЙ -->
+        <form id="art_form" method="post" action="<?= $url_add_news ?>">           <!-- СПИСОК СТАТЕЙ -->
             <section id="main_section">
                 <table class="table_art">
                     <thead>
@@ -50,6 +50,7 @@ _table;
                     </tbody>
                 </table>
                 <div class="add_btns">
+<!--                    <input type="hidden" name="id_news" value="">-->
 <!--                    <input class="btn_add" type="submit" name="art_edit" value="Изменить">-->
                     <input class="btn_del" type="submit" name="art_del" value="Удалить">
                 </div>

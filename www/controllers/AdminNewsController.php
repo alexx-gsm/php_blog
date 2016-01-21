@@ -14,8 +14,27 @@ class AdminNewsController extends NewsController
 
     public function actionNew()
     {
-
         $view = new View();
+        $id = isset( $_POST['id_news'] ) ? $_POST['id_news'] : null;
+
+        if( isset( $_POST['news_save'] ) ) {
+            News::$id = $id;
+            News::$title = isset( $_POST['title'] ) ? $_POST['title'] : null;
+            News::$intro = isset( $_POST['intro'] ) ? $_POST['intro'] : null;
+            News::$text = isset( $_POST['text'] ) ? $_POST['text'] : null;
+            if( $id ) {
+                News::update();
+            } else {
+                $id = News::save();
+            }
+        }
+
+        if( $id )
+        {
+            $view->id = $id;
+            $view->item = News::getOne($id);
+        }
+
         $view->display($this->view_new);
     }
 }

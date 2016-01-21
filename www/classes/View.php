@@ -10,6 +10,11 @@ class View
         $this->data[$key] = $val;
     }
 
+    public function __get( $key )
+    {
+        return $this->data[$key];
+    }
+
     public function render( $template )
     {
         foreach( $this->data as $key => $val )
@@ -25,6 +30,10 @@ class View
 
     public function display($template)
     {
-        echo $this->render($template);
+        foreach( $this->data as $key => $val )
+        {
+            $$key = $val;
+        }
+        include self::PATH . $template;
     }
 }
