@@ -1,52 +1,56 @@
 <?php
 
 
-class AdminNewsController extends NewsController
+class AdminNewsController extends AbstractController
 {
     protected $view_one = '/news/adminOne.php';
     protected $view_all = '/news/adminAll.php';
     protected $view_new = '/news/adminNew.php';
 
+    protected $ctrl = 'AdminNews';
+
     public function actionSave() {
-        echo $this->view_one;
+        echo $this->view_new;
         return true;
     }
 
     public function actionNew()
     {
         $view = new View();
+        $page = new PageController();
+
         $id = isset( $_POST['id_news'] ) ? $_POST['id_news'] : null;
 
         if( isset( $_POST['news_save'] ) ) {
-            News::$id = $id;
-            News::$title = isset( $_POST['title'] ) ? $_POST['title'] : null;
-            News::$intro = isset( $_POST['intro'] ) ? $_POST['intro'] : null;
-            News::$text = isset( $_POST['text'] ) ? $_POST['text'] : null;
+            AdminNews::$id = $id;
+            AdminNews::$title = isset( $_POST['title'] ) ? $_POST['title'] : null;
+            AdminNews::$intro = isset( $_POST['intro'] ) ? $_POST['intro'] : null;
+            AdminNews::$text = isset( $_POST['text'] ) ? $_POST['text'] : null;
             if( $id ) {
-                News::update();
+                AdminNews::update();
             } else {
-                $id = News::save();
+                $id = AdminNews::save();
             }
         }
 
         if( $id ) {
             $view->id = $id;
-            $view->item = News::getOne($id);
+            $view->item = AdminNews::getOne($id);
         }
-
+        $view->assign( 'links', $page->createLink( $this->ctrl ) );
         $view->display($this->view_new);
     }
 
     public function actionDel()
     {
-        News::$id = isset( $_POST['radio_id'] ) ? $_POST['radio_id'] : null;
+        AdminNews::$id = isset( $_POST['radio_id'] ) ? $_POST['radio_id'] : null;
 
-        if( News::$id ) {
-            News::del();
+        if( AdminNews::$id ) {
+            AdminNews::del();
         }
 
         $view = new View();
-        $view->items = News::getAll();
+        $view->items = AdminNews::getAll();
         $view->display($this->view_all);
     }
 }

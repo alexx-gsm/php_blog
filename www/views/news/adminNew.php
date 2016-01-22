@@ -2,10 +2,6 @@
 
 include_once __DIR__ . '/../../inc/var.php';
 
-$host = "http://".$_SERVER['HTTP_HOST'];
-$url_add_news = $host . "/index.php?ctrl=AdminNews&act=New";
-$url_all_news = $host . "/index.php?ctrl=AdminNews&act=All";
-
 ?>
 <!doctype html>
 <html>
@@ -20,10 +16,10 @@ $url_all_news = $host . "/index.php?ctrl=AdminNews&act=All";
     </aside>
     <div id="wrapper">
         <div class="add_btns">
-            <a class="btn_add" href="<?= $url_all_news ?>">К списку</a>
-            <a class="btn_add" href="<?= $url_add_news ?>">Новая</a>
+            <a class="btn_add" href="<?= $allNews ?>">К списку</a>
+            <a class="btn_add" href="<?= $addNews ?>">Новая</a>
         </div>
-        <form method="post" action="<?= $url_add_news ?>">
+        <form method="post" action="<?= $addNews ?>">
             <div class="art_title">
                 <p>Заголовок:</p>
                 <input type="text" name="title" size="100" value="<?= $item->title ?>" required>

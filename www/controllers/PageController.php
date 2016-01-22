@@ -1,7 +1,7 @@
 <?php
 
 
-class Pagination
+class PageController
 {
     private $_conn;
     private $_limit;
@@ -9,27 +9,41 @@ class Pagination
     private $_query;
     private $_total;
 
-    private $pages;
+    private $num_entries;
+    private $limit;
+    private $current_page;
+    private $num_pages;
 
     public function getPage()
     {
-        // $this->pages = $pages;
-        $page = isset( $_POST['page'] ) ? $_POST['page'] : 1;
-        $pages = isset( $_POST['pages'] ) ? $_POST['pages'] : 5;
-        $page_nav = new Paginator($page, $pages);
-        $items = $page_nav->getPage();
-        return $items;
+        $this->current_page = isset( $_GET['page'] ) ? $_GET['page'] : 1;
+        $this->limit = isset( $_GET['limit'] ) ? $_GET['limit'] : 5;
 
-        //$items = Paginator::getAll();
-        //var_dump($items); die;
-
-//        $this->_conn = $conn;
-//        $this->_query = $query;
-
-//        $res = $this->_conn->query( $this->_query );
-//        $this->_total = $res->num_rows;
+        $page_nav = new Paginator($this->current_page, $this->limit);
+        $res = $page_nav->getPage();
+        $this->num_entries = $res['num_entries'];
+        return [
+            'items' => $res['items'],
+            'page' => $this->current_page,
+        ];
     }
 
+    public function createNav( $ctrl )
+    {
+        $nav = new newsPageNav($this->num_entries, $this->limit, $this->current_page);
+        $html = $nav->showNav( $ctrl );
+
+        return $html;
+    }
+
+    public function createLink( $ctrl )
+    {
+        return [
+            'addNews' => Variables::urlAddNews( $ctrl ),
+            'allNews' => Variables::urlAllNews( $ctrl ),
+            'delNews' => Variables::urlDelNews( $ctrl ),
+        ];
+    }
     public function getData( $limit = 10, $page = 1 )
     {
 

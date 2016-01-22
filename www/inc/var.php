@@ -5,6 +5,7 @@ $head =<<<_head
     <meta charset="utf-8">
     <title>админка</title>
     <link rel="stylesheet" type="text/css" href="css/admin_style.css">
+    <link rel="stylesheet" href="css/bootstrap.min.css">
     <script type="text/javascript" src="js/cufon-yui.js"></script>
     <script type="text/javascript" src="js/Beryozki_400.font.js"></script>
     <script type="text/javascript">Cufon.replace("h1");</script>
@@ -21,4 +22,5 @@ $admin_menu = <<<_MENU
 <li class="menu_li"><a class="admin_menu" href="images.php">изображения</a></li>
 </ul>
 _MENU;
+
 ?>

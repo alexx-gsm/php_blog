@@ -3,15 +3,17 @@
 
 class Paginator extends AbstractModel
 {
-    public $_pages;
-    public $_page;
+    protected static $table = 'articles';
+    protected static $class = 'News';
 
-    public function __construct( $page = 1, $pages = 10)
+    public $limit;
+    public $page;
+
+    public function __construct( $page, $limit)
     {
-        $this->_page = $page-1;
-        $this->_pages = $pages;
+        $this->page = $page-1;
+        $this->limit = $limit;
     }
-
 
     public function getPage()
     {
@@ -19,15 +21,20 @@ class Paginator extends AbstractModel
         $sql = 'SELECT * FROM ' . static::$table;
         $items = $db->queryAll($sql, static::$class);
         $page = [];
-        $start = $this->_page * $this->_pages;
-        $end = $start + $this->_pages;
-        // echo $this->_page, $this->_pages, $start, $end;
-        for( $i = $start; $i < $end; $i++) {
-            $page[] = $items[$i];
-            // echo 'i= '.$i.' ';
+        $start = $this->page * $this->limit;
+        $end = $start + $this->limit;
+        for( $i = $start; $i < $end; $i++ ) {
+            if( $items[$i] ) {
+                $page[] = $items[$i];
+            } else break;
         }
 
-        return $page;
+        // var_dump($page); die;
+
+        return [
+                'items' => $page,
+                'num_entries' => count($items),
+                ];
     }
 
 

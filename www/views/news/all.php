@@ -12,5 +12,6 @@
     <div><?=$item->intro; ?></div>
     <hr>
 <?php endforeach; ?>
+<nav><?= $pageNav?></nav>
 </body>
 </html>

@@ -1,10 +1,7 @@
 <?php
 
-include_once __DIR__ . '/../../inc/var.php';
+include __DIR__ . '/../../inc/var.php';
 
-$host = "http://".$_SERVER['HTTP_HOST'];
-$url_add_news = $host . "/index.php?ctrl=AdminNews&act=New";
-$url_del_news = $host . "/index.php?ctrl=AdminNews&act=Del";
 
 $table = '';
 foreach( $items as $item ) {
@@ -34,9 +31,9 @@ _table;
     <div id="wrapper">
         <!-- НОВАЯ СТАТЬЯ -->
         <div class="add_btns">
-            <a class="btn_add" href="<?= $url_add_news ?>">Добавить</a>
+            <a class="btn_add" href="<?= $addNews ?>">Добавить</a>
         </div>
-        <form id="art_form" method="post" action="<?= $url_add_news ?>">           <!-- СПИСОК СТАТЕЙ -->
+        <form id="art_form" method="post" action="<?= $addNews ?>">           <!-- СПИСОК СТАТЕЙ -->
             <section id="main_section">
                 <table class="table_art">
                     <thead>
@@ -50,6 +47,7 @@ _table;
                     <?= $table ?>
                     </tbody>
                 </table>
+                <nav><?= $pageNav?></nav>
             </section>
             <div class="clear"></div>
         </form>
